@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:parking_lot_rater/repositories/parkinglots_repository.dart';
-import 'package:tuple/tuple.dart';
 import 'parking_lots_event.dart';
 import 'parking_lots_state.dart';
 

@@ -38,6 +38,8 @@ dependencies:
   image_cropper: ^5.0.0
   image_picker: ^1.0.4
   equatable: ^2.0.5
+  mockito: ^5.0.17
+  bloc_test: ^9.0.3
 
   bloc: ^8.1.2
   flutter_bloc: ^8.1.3
