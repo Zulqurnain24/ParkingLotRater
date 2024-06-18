@@ -1,61 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:parking_lot_rater/widgets/tabbar_view.dart';
+import 'package:parking_lot_rater/widgets/list_tab_content.dart';
 import '../model/card_model.dart';
-import '../screens/detail_screen.dart';
+import '../widgets/tabbed_list_view.dart';
+import '../widgets/app_bar_widget.dart';
 
 class ChoiceReviewerScreen extends StatelessWidget {
 	final List<CardModel> favoriteList;
 	final List<CardModel> unfavoriteList;
 
-	const ChoiceReviewerScreen({
+	ChoiceReviewerScreen({
 		Key? key,
-		required this.favoriteList,
-		required this.unfavoriteList,
-	}) : super(key: key);
+		required List<CardModel> favoriteList,
+		required List<CardModel> unfavoriteList,
+	})  : favoriteList = List.of(favoriteList),
+				unfavoriteList = List.of(unfavoriteList),
+				super(key: key) {
+		favoriteList.sort((a, b) => a.liveDate.compareTo(b.liveDate));
+		unfavoriteList.sort((a, b) => a.liveDate.compareTo(b.liveDate));
+	}
 
 	@override
 	Widget build(BuildContext context) {
 		return DefaultTabController(
 			length: 2, // Number of tabs
 			child: Scaffold(
-				appBar: AppBar(
-					title: Text('Choice Reviewer'),
-					bottom: const TabBar(
-						tabs: [
-							Tab(text: 'Favorite List'),
-							Tab(text: 'Unfavorite List'),
-						],
-					),
-				),
+				appBar: AppBarWidget(),
 				body: TabBarView(
 					children: [
-						TabbedListView(
+						ListTabContent(
 							itemList: favoriteList,
-							onTap: (index) {
-								Navigator.push(
-									context,
-									MaterialPageRoute(
-										builder: (context) => DetailScreen(
-											cardModel: favoriteList[index],
-											title: 'Favorited Parking Lot',
-										),
-									),
-								);
-							},
+							title: 'Favorited Parking Lot',
 						),
-						TabbedListView(
+						ListTabContent(
 							itemList: unfavoriteList,
-							onTap: (index) {
-								Navigator.push(
-									context,
-									MaterialPageRoute(
-										builder: (context) => DetailScreen(
-											cardModel: unfavoriteList[index],
-											title: 'Unfavorited Parking Lot',
-										),
-									),
-								);
-							},
+							title: 'Unfavorited Parking Lot',
 						),
 					],
 				),
