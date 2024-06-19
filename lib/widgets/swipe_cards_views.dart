@@ -1,13 +1,14 @@
 // SwipeCardsView widget
 
 import 'package:flutter/material.dart';
+import 'package:parking_lot_rater/model/card_model.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 import 'swipe_card_item.dart';
 
 class SwipeCardsView extends StatelessWidget {
   final MatchEngine matchEngine;
-  final List<String> imageUrls;
+  final List<CardModel> cardModels;
   final int currentPhoto;
   final int numberPhotos;
   final ValueSetter<int> onPhotoChange;
@@ -18,7 +19,7 @@ class SwipeCardsView extends StatelessWidget {
   const SwipeCardsView({
     Key? key,
     required this.matchEngine,
-    required this.imageUrls,
+    required this.cardModels,
     required this.currentPhoto,
     required this.numberPhotos,
     required this.onPhotoChange,
@@ -35,9 +36,7 @@ class SwipeCardsView extends StatelessWidget {
       onStackFinished: () {},
       itemBuilder: (context, i) {
         return SwipeCardItem(
-          imageUrl: imageUrls.isNotEmpty
-              ? imageUrls[i]
-              : "https://cdn.dribbble.com/users/55871/screenshots/2158022/media/8f2a4a2c9126a9f265fb9e1023b1698a.jpg?resize=400x0",
+          cardModel: cardModels[i],
           currentPhoto: currentPhoto,
           numberPhotos: numberPhotos,
           onPhotoChange: onPhotoChange,

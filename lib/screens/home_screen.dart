@@ -69,13 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is ParkingLotsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is ParkingLotsSuccess) {
-            List<String> imageUrls = [];
+            List<CardModel> cardModels = [];
             late final List<CardModel> favoriteList = [];
             late final List<CardModel> unfavoriteList = [];
             List<SwipeItem> items = state.parkingLots.item1.map((parkingLot) {
-              String? imageUrl = parkingLot["image"]?.toString();
-              if (imageUrl != null) {
-                imageUrls.add(imageUrl);
+              CardModel? cardModel = CardModel.fromMap(parkingLot);
+              if (cardModel != null) {
+                cardModels.add(cardModel);
               }
               return SwipeItem(
                 content: CardModel.fromMap(parkingLot).content,
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             return SwipeCardsView(
               matchEngine: _matchEngine,
-              imageUrls: imageUrls,
+              cardModels: cardModels,
               currentPhoto: currentPhoto,
               numberPhotos: numberPhotos,
               onPhotoChange: (newPhoto) {

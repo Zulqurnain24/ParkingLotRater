@@ -1,12 +1,12 @@
-// SwipeCardItem Widget
-
 import 'package:flutter/material.dart';
+import 'package:parking_lot_rater/model/card_model.dart';
 import 'photo_indicators.dart';
 import 'photo_navigation.dart';
 import 'swipe_action_buttons.dart';
+import 'card_info_text.dart';
 
 class SwipeCardItem extends StatelessWidget {
-  final String imageUrl;
+  final CardModel cardModel;
   final int currentPhoto;
   final int numberPhotos;
   final ValueSetter<int> onPhotoChange;
@@ -16,7 +16,7 @@ class SwipeCardItem extends StatelessWidget {
 
   const SwipeCardItem({
     Key? key,
-    required this.imageUrl,
+    required this.cardModel,
     required this.currentPhoto,
     required this.numberPhotos,
     required this.onPhotoChange,
@@ -41,7 +41,7 @@ class SwipeCardItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(imageUrl),
+                    image: NetworkImage(cardModel.imageUrl),
                   ),
                 ),
               ),
@@ -56,6 +56,22 @@ class SwipeCardItem extends StatelessWidget {
                       Colors.transparent,
                     ],
                   ),
+                ),
+              ),
+              // Image Attributes
+              Positioned(
+                top: 20,
+                left: 20,
+                right: 20,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CardInfoText(label: 'Name', value: cardModel.name),
+                    CardInfoText(label: 'Address', value: cardModel.address),
+                    CardInfoText(label: 'Size', value: "${cardModel.size}"),
+                    CardInfoText(label: 'Live Date', value: cardModel.liveDate),
+                    CardInfoText(label: 'Type', value: cardModel.type),
+                  ],
                 ),
               ),
               PhotoNavigation(
