@@ -9,7 +9,6 @@ import 'package:parking_lot_rater/screens/choose_reviewer_screen.dart';
 import 'package:parking_lot_rater/widgets/app_logo.dart';
 import 'package:parking_lot_rater/widgets/error_dialog.dart';
 import 'package:parking_lot_rater/widgets/swipe_cards_views.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:swipe_cards/draggable_card.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 import '../model/card_model.dart';
@@ -116,13 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               onSuperlike: () {
                 log("List Button Pressed!");
-                pushNewScreen(
-                  context,
-                  withNavBar: true,
-                  screen: ChoiceReviewerScreen(
-                    favoriteList: favoriteList,
-                    unfavoriteList: unfavoriteList,
-                  ),
+                Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ChoiceReviewerScreen(
+                        favoriteList: favoriteList,
+                        unfavoriteList: unfavoriteList,
+                      );
+                    },
+                  ), (_) => true,
                 );
               },
             );
@@ -139,7 +140,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-
-
