@@ -24,7 +24,7 @@ class DetailScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 16),
-            Text('Name: ${cardModel.content}'),
+            Text('${cardModel.content}'),
           ],
         ),
       ),
