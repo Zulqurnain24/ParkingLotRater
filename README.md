@@ -27,17 +27,13 @@ To install and run the app:
 git clone https://github.com/Zulqurnain24/ParkingLotRater
 
 Open in Android Studio: Open Android Studio Koala and import the project.
+In the terminal run the following commands:
 
-Install Dependencies:
-
+flutter pub cache repair
 flutter pub get
-
-Run the App:
-
-Connect your Android device or start an emulator.
-
-Click on the 'Run' button in Android Studio.
+flutter run
 
 ### Running tests:
 
 flutter test
+
