@@ -30,7 +30,9 @@ Open in Android Studio: Open Android Studio Koala and import the project.
 In the terminal run the following commands:
 
 flutter pub cache repair
+
 flutter pub get
+
 flutter run
 
 ### Running tests:
